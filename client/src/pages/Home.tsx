@@ -20,7 +20,7 @@ const WEDDING_DATE = new Date("2026-10-17T15:00:00");
 
 const FLORAL_TL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663640176366/jRyVch4PWwnb6ouH3Moick/floral-corner-tl-Yu7vKkGD2fgL7eM6xti9nQ.webp";
 const FLORAL_BR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663640176366/jRyVch4PWwnb6ouH3Moick/floral-corner-br-cZCjTtZcNxvk8tnzrcurd5.webp";
-const COUPLE_IMG = "public/poza-nunta-decupata.jpeg";
+const COUPLE_IMG = "/poza-nunta-decupata.jpeg";
 
 /* ---- Shared style helpers ---- */
 const scriptStyle = (size = "clamp(2.8rem, 7vw, 5rem)"): React.CSSProperties => ({

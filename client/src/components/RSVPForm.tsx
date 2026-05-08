@@ -204,7 +204,7 @@ export default function RSVPForm() {
       {/* Name */}
       <div className="mb-8">
         <label style={labelStyle}>Numele tău</label>
-        <input name="nume" required
+        <input name="nume"
           type="text"
           placeholder="Prenume Nume"
           value={formData.name}

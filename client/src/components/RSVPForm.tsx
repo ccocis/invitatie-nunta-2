@@ -5,6 +5,9 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
+
+emailjs.init("-XiVPkW9l7sKpUxW6");
 
 export default function RSVPForm() {
   const [formData, setFormData] = useState({
@@ -18,15 +21,57 @@ export default function RSVPForm() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [validationError, setValidationError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!formData.name || !formData.attending) return;
+
+    // Validation
+    setValidationError(null);
+    if (!formData.name.trim()) {
+      setValidationError("Te rog completează numele.");
+      return;
+    }
+    if (!formData.attending) {
+      setValidationError("Te rog selectează dacă vei participa.");
+      return;
+    }
+
     setLoading(true);
-    setTimeout(() => {
+    setError(null);
+  
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    setLoading(true);
+  
+    try {
+      await emailjs.send(
+        "gmail_service",     // <- service_id
+        "nunta-template-2",    // <- template_id
+        {
+          nume: formData.name,
+          participare: formData.attending,
+          partener: formData.plusOne || "Not specified",
+          copii: formData.children || "Not specified",
+          meniu: formData.menu || "Not specified",
+          alergii: formData.allergies || "None",
+          mesaj: formData.message || "No message",
+        },
+        {
+          publicKey: "-XiVPkW9l7sKpUxW6",
+        }
+      );
+  
       setLoading(false);
       setSubmitted(true);
-    }, 1200);
+      form.reset();
+  
+    } catch (err) {
+      console.error(err);
+      setLoading(false);
+      setError("A apărut o eroare la trimitere.");
+    }
   };
 
   const inputStyle: React.CSSProperties = {
@@ -56,6 +101,8 @@ export default function RSVPForm() {
   };
 
   if (submitted) {
+    const isAttending = formData.attending === "da";
+
     return (
       <motion.div
         className="text-center py-12"
@@ -87,9 +134,9 @@ export default function RSVPForm() {
             marginBottom: "0.75rem",
           }}
         >
-          Thank you!
+          Mulțumim!
         </p>
-        <p
+        {isAttending && (<p
           style={{
             fontFamily: "'Cormorant Garamond', Georgia, serif",
             fontSize: "1.1rem",
@@ -97,8 +144,8 @@ export default function RSVPForm() {
             color: "#5C5850",
           }}
         >
-          We look forward to celebrating with you.
-        </p>
+          Vă așteptăm la petrecere!.
+        </p>)}
         <p
           style={{
             fontFamily: "'Cormorant Garamond', Georgia, serif",
@@ -107,7 +154,7 @@ export default function RSVPForm() {
             marginTop: "0.5rem",
           }}
         >
-          — Alex &amp; Emma
+          — Cătălin &amp; Dana
         </p>
       </motion.div>
     );
@@ -115,12 +162,51 @@ export default function RSVPForm() {
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto">
+      {/* Validation error message */}
+      {validationError && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          style={{
+            background: "#FFE8E8",
+            border: "1px solid #C9A96E",
+            color: "#8B4545",
+            padding: "12px",
+            marginBottom: "1.5rem",
+            borderRadius: "4px",
+            fontFamily: "'Cormorant Garamond', Georgia, serif",
+            fontSize: "0.95rem",
+          }}
+        >
+          ⚠️ {validationError}
+        </motion.div>
+      )}
+      
+      {/* Error message */}
+      {error && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          style={{
+            background: "#FFE8E8",
+            border: "1px solid #C9A96E",
+            color: "#8B4545",
+            padding: "12px",
+            marginBottom: "1.5rem",
+            borderRadius: "4px",
+            fontFamily: "'Cormorant Garamond', Georgia, serif",
+            fontSize: "0.95rem",
+          }}
+        >
+          {error}
+        </motion.div>
+      )}
       {/* Name */}
       <div className="mb-8">
-        <label style={labelStyle}>Your name</label>
-        <input
+        <label style={labelStyle}>Numele tău</label>
+        <input name="nume" required
           type="text"
-          placeholder="First Last"
+          placeholder="Prenume Nume"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           style={inputStyle}
@@ -130,9 +216,9 @@ export default function RSVPForm() {
 
       {/* Attending */}
       <div className="mb-8">
-        <label style={labelStyle}>Will you attend?</label>
+        <label style={labelStyle}>Participi?</label>
         <div className="flex gap-8 mt-2">
-          {["Yes", "No"].map((opt) => (
+          {["Da", "Nu"].map((opt) => (
             <label
               key={opt}
               className="flex items-center gap-2 cursor-pointer"
@@ -172,13 +258,13 @@ export default function RSVPForm() {
         </div>
       </div>
 
-      {formData.attending === "yes" && (
+      {formData.attending === "da" && (
         <>
           {/* Plus one */}
           <div className="mb-8">
-            <label style={labelStyle}>Will you bring a plus one?</label>
+            <label style={labelStyle}>Vei veni însoțit?</label>
             <div className="flex gap-8 mt-2">
-              {["Yes", "No"].map((opt) => (
+              {["Da", "Nu"].map((opt) => (
                 <label
                   key={opt}
                   className="flex items-center gap-2 cursor-pointer"
@@ -220,9 +306,9 @@ export default function RSVPForm() {
 
           {/* Children */}
           <div className="mb-8">
-            <label style={labelStyle}>Will you bring children?</label>
+            <label style={labelStyle}>Vei veni cu copii?</label>
             <div className="flex gap-8 mt-2">
-              {["Yes", "No"].map((opt) => (
+              {["Da", "Nu"].map((opt) => (
                 <label
                   key={opt}
                   className="flex items-center gap-2 cursor-pointer"
@@ -264,7 +350,7 @@ export default function RSVPForm() {
 
           {/* Menu preference */}
           <div className="mb-8">
-            <label style={labelStyle}>Menu preference</label>
+            <label style={labelStyle}>Preferințe meniu</label>
             <div className="flex gap-8 mt-2">
               {["Standard", "Vegetarian"].map((opt) => (
                 <label
@@ -308,10 +394,10 @@ export default function RSVPForm() {
 
           {/* Allergies */}
           <div className="mb-8">
-            <label style={labelStyle}>Allergies or dietary needs? (optional)</label>
+            <label style={labelStyle}>Alergii sau alte necesități? (opțional)</label>
             <input
               type="text"
-              placeholder="e.g. lactose, gluten"
+              placeholder="e.g. lactoză, gluten"
               value={formData.allergies}
               onChange={(e) => setFormData({ ...formData, allergies: e.target.value })}
               style={inputStyle}
@@ -322,9 +408,9 @@ export default function RSVPForm() {
 
       {/* Message */}
       <div className="mb-10">
-        <label style={labelStyle}>Leave us a message? (optional)</label>
+        <label style={labelStyle}>Dorești să ne transmiți un mesaj? (opțional)</label>
         <textarea
-          placeholder="Your warm wishes..."
+          placeholder=""
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           rows={3}
@@ -342,7 +428,7 @@ export default function RSVPForm() {
       <div className="text-center">
         <motion.button
           type="submit"
-          disabled={loading || !formData.name || !formData.attending}
+          disabled={loading}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           style={{
@@ -359,7 +445,7 @@ export default function RSVPForm() {
             transition: "background 0.3s",
           }}
         >
-          {loading ? "Sending..." : "See you there!"}
+          {loading ? "Trimitere mesaj..." : "Trimite răspuns"}
         </motion.button>
       </div>
     </form>

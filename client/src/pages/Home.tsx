@@ -16,11 +16,11 @@ import Countdown from "@/components/Countdown";
 import RSVPForm from "@/components/RSVPForm";
 
 // Wedding date: June 14, 2026
-const WEDDING_DATE = new Date("2026-06-14T15:00:00");
+const WEDDING_DATE = new Date("2026-10-17T15:00:00");
 
 const FLORAL_TL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663640176366/jRyVch4PWwnb6ouH3Moick/floral-corner-tl-Yu7vKkGD2fgL7eM6xti9nQ.webp";
 const FLORAL_BR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663640176366/jRyVch4PWwnb6ouH3Moick/floral-corner-br-cZCjTtZcNxvk8tnzrcurd5.webp";
-const COUPLE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663640176366/jRyVch4PWwnb6ouH3Moick/couple-placeholder-gNxQJsFiMKXkbXCYNJ7XxV.webp";
+const COUPLE_IMG = "public/poza-nunta-decupata.jpeg";
 
 /* ---- Shared style helpers ---- */
 const scriptStyle = (size = "clamp(2.8rem, 7vw, 5rem)"): React.CSSProperties => ({
@@ -213,10 +213,10 @@ export default function Home() {
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
                   <p style={{ ...labelStyle, marginBottom: "1rem" }}>
-                    In a special day, surrounded by love and emotion,
+                    Pentru că cele mai frumoase momente se petrec alături de oameni dragi,
                   </p>
                   <p style={{ ...serifStyle("1.1rem", 300), fontStyle: "italic", marginBottom: "0.5rem" }}>
-                    We,
+                    Noi,
                   </p>
                 </motion.div>
 
@@ -226,19 +226,27 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.4 }}
                 >
-                  Alex &amp; Emma
+                  Cătălin &amp; Dana
                 </motion.h1>
 
                 {/* Couple photo */}
                 <motion.div
-                  style={{ margin: "2rem auto", width: "clamp(100px, 18vw, 150px)", height: "clamp(100px, 18vw, 150px)" }}
+                  style={{
+                    margin: "2rem auto",
+                    width: "75%",
+                    maxWidth: "250px",
+                    aspectRatio: "0.75",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
                 >
                   <img
                     src={COUPLE_IMG}
-                    alt="Alex and Emma"
+                    alt="Catalin and Dana"
                     style={{
                       width: "100%",
                       height: "100%",
@@ -256,23 +264,30 @@ export default function Home() {
                   transition={{ duration: 0.8, delay: 0.8 }}
                 >
                   <p style={{ ...labelStyle, marginBottom: "1.2rem" }}>
-                    With the blessing of our parents,
+                    Cu binecuvântarea părinților,
                   </p>
 
                   <div style={{ display: "flex", justifyContent: "center", gap: "clamp(1.5rem, 5vw, 4rem)", flexWrap: "wrap", marginBottom: "1.5rem" }}>
-                    <p style={serifStyle("1rem", 400)}>Robert &amp; Margaret Williams</p>
-                    <p style={serifStyle("1rem", 400)}>Thomas &amp; Catherine Clarke</p>
+                    <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                    <p style={serifStyle("1rem", 400)}>GHEORGHE &amp; VIORELA COCIȘ</p>
+                    </div>
+                      <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                        <div style={{ padding: "4px 4px", border: "1px solid grey" }}>
+                          <p style={serifStyle("1rem", 400)}>VASILE TOTHĂZAN</p>
+                        </div>
+                        <p style={serifStyle("1rem", 400)}>&amp; MARIA NEAGU</p>
+                      </div>
                   </div>
 
-                  <p style={{ ...labelStyle, marginBottom: "1rem" }}>And our godparents,</p>
+                  <p style={{ ...labelStyle, marginBottom: "1rem" }}>Și a nașilor,</p>
 
                   <div style={{ display: "flex", justifyContent: "center", gap: "clamp(1.5rem, 5vw, 4rem)", flexWrap: "wrap", marginBottom: "2rem" }}>
-                    <p style={serifStyle("1rem", 400)}>James &amp; Sophia Hart</p>
-                    <p style={serifStyle("1rem", 400)}>William &amp; Olivia Bennett</p>
+                    <p style={serifStyle("1rem", 400)}>GELU &amp; IULIA BUGNARU</p>
+                    <p style={serifStyle("1rem", 400)}>CĂLIN &amp; ALINA TURCU</p>
                   </div>
 
                   <p style={{ ...serifStyle("1.1rem", 300), fontStyle: "italic", maxWidth: 480, margin: "0 auto 1.5rem" }}>
-                    We invite you to join us on the day our destinies unite forever:
+                    Vă invităm să petrecem împreună, să dansăm, să râdem și să creăm amintiri de neuitat.
                   </p>
                 </motion.div>
 
@@ -281,7 +296,7 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 1 }}
                 >
-                  <p style={scriptStyle("clamp(2.5rem, 7vw, 4.5rem)")}>14 June 2026</p>
+                  <p style={scriptStyle("clamp(2.5rem, 7vw, 4.5rem)")}>17 Octombrie 2026</p>
 
                   <GoldDivider />
 
@@ -302,7 +317,7 @@ export default function Home() {
               <div style={{ maxWidth: 800, margin: "0 auto" }}>
                 <RevealSection>
                   <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-                    <p style={labelStyle}>Event details</p>
+                    <p style={labelStyle}>Locația evenimentului</p>
                     <GoldDivider text="✦" />
                   </div>
                 </RevealSection>
@@ -329,15 +344,6 @@ export default function Home() {
                           pointerEvents: "none",
                         }}
                       />
-                      <p style={{ ...labelStyle, marginBottom: "0.5rem" }}>Where we will say</p>
-                      <p style={scriptStyle("clamp(1.8rem, 4vw, 2.5rem)")}>
-                        "I do"
-                      </p>
-                      <p style={{ ...labelStyle, marginBottom: "1.5rem" }}>forever</p>
-
-                      <h3 style={{ ...serifStyle("1.3rem", 500), marginBottom: "0.75rem" }}>
-                        Religious Ceremony
-                      </h3>
 
                       <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", marginBottom: "0.5rem" }}>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth="1.5" style={{ marginTop: 3, flexShrink: 0 }}>
@@ -345,8 +351,8 @@ export default function Home() {
                           <circle cx="12" cy="9" r="2.5" />
                         </svg>
                         <div>
-                          <p style={serifStyle("1rem", 500)}>St. Mary's Cathedral</p>
-                          <p style={{ ...serifStyle("0.9rem", 300), color: "#5C5850" }}>London, United Kingdom</p>
+                          <p style={serifStyle("1rem", 500)}>Radisson Blu Hotel</p>
+                          <p style={{ ...serifStyle("0.9rem", 300), color: "#5C5850" }}>Cluj-Napoca</p>
                         </div>
                       </div>
 
@@ -355,123 +361,24 @@ export default function Home() {
                           <circle cx="12" cy="12" r="10" />
                           <path d="M12 6v6l4 2" />
                         </svg>
-                        <p style={serifStyle("1rem", 500)}>3:00 PM</p>
+                        <p style={serifStyle("1rem", 500)}>15:00</p>
                       </div>
 
-                      <MapButton href="https://maps.google.com" label="Open in Maps" />
-                    </div>
-                  </RevealSection>
-
-                  {/* Reception */}
-                  <RevealSection delay={0.2}>
-                    <div
-                      style={{
-                        background: "#FAF8F4",
-                        border: "1px solid rgba(201, 169, 110, 0.3)",
-                        padding: "2.5rem",
-                        position: "relative",
-                      }}
-                    >
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: 12,
-                          left: 12,
-                          right: 12,
-                          bottom: 12,
-                          border: "1px solid rgba(201, 169, 110, 0.15)",
-                          pointerEvents: "none",
-                        }}
+                      <iframe
+                        title="Google Maps"
+                        src="https://www.google.com/maps?q=Radisson+Blu+Hotel+Cluj-Napoca&output=embed"
+                        className="w-full h-full border-0"
+                        loading="lazy"
                       />
-                      <p style={{ ...labelStyle, marginBottom: "0.5rem" }}>Where we will create</p>
-                      <p style={scriptStyle("clamp(1.8rem, 4vw, 2.5rem)")}>
-                        memories
-                      </p>
-                      <p style={{ ...labelStyle, marginBottom: "1.5rem" }}>forever</p>
-
-                      <h3 style={{ ...serifStyle("1.3rem", 500), marginBottom: "0.75rem" }}>
-                        Reception
-                      </h3>
-
-                      <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", marginBottom: "0.5rem" }}>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth="1.5" style={{ marginTop: 3, flexShrink: 0 }}>
-                          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-                          <polyline points="9 22 9 12 15 12 15 22" />
-                        </svg>
-                        <div>
-                          <p style={serifStyle("1rem", 500)}>The Grand Pavilion</p>
-                          <p style={{ ...serifStyle("0.9rem", 300), color: "#5C5850" }}>Richmond, Surrey</p>
-                        </div>
-                      </div>
-
-                      <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "1.5rem" }}>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" strokeWidth="1.5" style={{ flexShrink: 0 }}>
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M12 6v6l4 2" />
-                        </svg>
-                        <p style={serifStyle("1rem", 500)}>5:00 PM</p>
-                      </div>
-
-                      <MapButton href="https://maps.google.com" label="Open in Maps" />
                     </div>
                   </RevealSection>
+
                 </div>
               </div>
             </section>
 
             {/* ============================================================
-                SECTION 3: SCHEDULE / TIMELINE
-                ============================================================ */}
-            <section style={{ background: "#FAF8F4", padding: "5rem 1.5rem" }}>
-              <div style={{ maxWidth: 600, margin: "0 auto" }}>
-                <RevealSection>
-                  <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-                    <p style={labelStyle}>Programme</p>
-                    <GoldDivider />
-                  </div>
-                </RevealSection>
-
-                {[
-                  { time: "3:00 – 4:00 PM", title: "Religious Ceremony", place: "St. Mary's Cathedral, London" },
-                  { time: "4:00 PM", title: "Arrival at the Venue", place: "The Grand Pavilion, Richmond" },
-                  { time: "5:00 PM", title: "Cocktail Hour", place: "Garden Terrace, The Grand Pavilion" },
-                  { time: "7:00 PM", title: "Dinner & Celebration", place: "Grand Ballroom, The Grand Pavilion" },
-                ].map((item, i) => (
-                  <RevealSection key={i} delay={i * 0.1}>
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "1.5rem",
-                        marginBottom: "2rem",
-                        paddingBottom: "2rem",
-                        borderBottom: i < 3 ? "1px solid rgba(201, 169, 110, 0.2)" : "none",
-                      }}
-                    >
-                      <div style={{ flexShrink: 0, paddingTop: 4 }}>
-                        <div
-                          style={{
-                            width: 10,
-                            height: 10,
-                            borderRadius: "50%",
-                            border: "1.5px solid #C9A96E",
-                            background: "#FAF8F4",
-                            marginTop: 4,
-                          }}
-                        />
-                      </div>
-                      <div>
-                        <p style={{ ...labelStyle, color: "#C9A96E", marginBottom: "4px" }}>{item.time}</p>
-                        <h4 style={{ ...serifStyle("1.2rem", 500), marginBottom: "4px" }}>{item.title}</h4>
-                        <p style={{ ...serifStyle("0.95rem", 300), color: "#5C5850" }}>{item.place}</p>
-                      </div>
-                    </div>
-                  </RevealSection>
-                ))}
-              </div>
-            </section>
-
-            {/* ============================================================
-                SECTION 4: RSVP
+                SECTION 3: RSVP
                 ============================================================ */}
             <section
               style={{
@@ -501,9 +408,8 @@ export default function Home() {
                 <RevealSection>
                   <div style={{ textAlign: "center", marginBottom: "3rem" }}>
                     <p style={{ ...labelStyle, marginBottom: "0.5rem" }}>
-                      Please confirm your attendance by 1 June 2026
+                      Vă rugăm să confirmați prezența până la 3 Octombrie 2026
                     </p>
-                    <p style={scriptStyle("clamp(2.5rem, 6vw, 4rem)")}>RSVP</p>
                     <GoldDivider />
                   </div>
                 </RevealSection>
@@ -526,17 +432,9 @@ export default function Home() {
               }}
             >
               <GoldDivider />
-              <p style={scriptStyle("clamp(2rem, 5vw, 3rem)")}>Alex &amp; Emma</p>
-              <p style={{ ...labelStyle, marginTop: "0.75rem" }}>14 June 2026</p>
-              <p style={{ ...serifStyle("0.85rem", 300), color: "#5C5850", marginTop: "0.5rem", fontStyle: "italic" }}>
-                For enquiries:{" "}
-                <a
-                  href="mailto:wedding@example.com"
-                  style={{ color: "#C9A96E", textDecoration: "none" }}
-                >
-                  wedding@example.com
-                </a>
-              </p>
+              <p style={{ ...labelStyle, marginBottom: "0.75rem" }}>VĂ MULȚUMIM!</p>
+              <p style={scriptStyle("clamp(2rem, 5vw, 3rem)")}>Cătălin &amp; Dana</p>
+              <p style={{ ...labelStyle, marginTop: "0.75rem" }}>17 Octombrie 2026</p>
             </footer>
           </motion.div>
         )}

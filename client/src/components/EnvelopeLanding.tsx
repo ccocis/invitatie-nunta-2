@@ -53,6 +53,7 @@ export default function EnvelopeLanding({ onOpen }: EnvelopeLandingProps) {
           >
             {/* Envelope image */}
             <motion.div
+              onClick={handleSealClick}
               className="relative"
               style={{ width: "min(580px, 90vw)" }}
             >
@@ -65,8 +66,7 @@ export default function EnvelopeLanding({ onOpen }: EnvelopeLandingProps) {
 
               {/* Wax seal overlay — clickable */}
               <motion.button
-                onClick={handleSealClick}
-                className="absolute seal-pulse rounded-full"
+                className="absolute rounded-full"
                 style={{
                   left: "50%",
                   top: "52%",
@@ -98,7 +98,7 @@ export default function EnvelopeLanding({ onOpen }: EnvelopeLandingProps) {
               className="text-base tracking-[0.2em] uppercase mb-1"
               style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 300, color: "#5C5850" }}
             >
-              This is your wedding invitation
+              Aceasta este invitația ta la nuntă
             </p>
             <motion.p
               className="text-sm tracking-[0.15em] uppercase"
@@ -106,7 +106,7 @@ export default function EnvelopeLanding({ onOpen }: EnvelopeLandingProps) {
               animate={{ opacity: [0.6, 1, 0.6] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
             >
-              {isOpening ? "Opening..." : "Click the seal to open"}
+              {"Apasă pe plic pentru a deschide"}
             </motion.p>
           </motion.div>
         </motion.div>

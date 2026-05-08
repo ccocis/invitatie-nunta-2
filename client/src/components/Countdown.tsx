@@ -66,10 +66,10 @@ export default function Countdown({ targetDate }: CountdownProps) {
   }
 
   const units = [
-    { label: "days", value: timeLeft.days },
-    { label: "hours", value: pad(timeLeft.hours) },
-    { label: "minutes", value: pad(timeLeft.minutes) },
-    { label: "seconds", value: pad(timeLeft.seconds) },
+    { label: "ZILE", value: timeLeft.days },
+    { label: "ORE", value: pad(timeLeft.hours) },
+    { label: "MINUTE", value: pad(timeLeft.minutes) },
+    { label: "SECUNDE", value: pad(timeLeft.seconds) },
   ];
 
   return (
@@ -84,7 +84,7 @@ export default function Countdown({ targetDate }: CountdownProps) {
           color: "#5C5850",
         }}
       >
-        Time remaining
+        MAI SUNT:
       </p>
 
       <div className="flex items-center gap-2 sm:gap-4">

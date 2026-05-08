@@ -1,0 +1,251 @@
+/* ============================================================
+   WEDDING INVITATION — ROMANTIC CLASSICISM
+   Design Philosophy: Warm ivory parchment, antique gold accents,
+   elegant script + serif typography, physical-object animations
+   ============================================================ */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-parchment: var(--parchment);
+  --color-charcoal: var(--charcoal);
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* Wedding palette */
+  --gold: #C9A96E;
+  --gold-light: #E8D5B0;
+  --gold-dark: #9E7A3F;
+  --parchment: #FAF8F4;
+  --parchment-dark: #F0EBE1;
+  --charcoal: #2C2A27;
+  --charcoal-light: #5C5850;
+  --muted-rose: #E8D5C4;
+
+  /* Semantic tokens */
+  --background: oklch(0.985 0.008 75);       /* warm ivory */
+  --foreground: oklch(0.22 0.015 65);         /* deep charcoal */
+  --card: oklch(0.99 0.005 75);
+  --card-foreground: oklch(0.22 0.015 65);
+  --popover: oklch(0.99 0.005 75);
+  --popover-foreground: oklch(0.22 0.015 65);
+  --primary: oklch(0.62 0.08 70);             /* antique gold */
+  --primary-foreground: oklch(0.99 0.005 75);
+  --secondary: oklch(0.93 0.015 75);
+  --secondary-foreground: oklch(0.35 0.015 65);
+  --muted: oklch(0.94 0.01 75);
+  --muted-foreground: oklch(0.52 0.02 65);
+  --accent: oklch(0.90 0.025 75);
+  --accent-foreground: oklch(0.22 0.015 65);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.88 0.02 75);
+  --input: oklch(0.88 0.02 75);
+  --ring: oklch(0.62 0.08 70);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+
+  /* Wedding-specific utilities */
+  .font-script {
+    font-family: 'Great Vibes', cursive;
+  }
+
+  .font-serif {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  .font-sans-light {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+  }
+
+  .text-gold {
+    color: var(--gold);
+  }
+
+  .bg-parchment {
+    background-color: var(--parchment);
+  }
+
+  .border-gold {
+    border-color: var(--gold);
+  }
+
+  /* Gold ornamental divider */
+  .gold-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--gold);
+  }
+
+  .gold-divider::before,
+  .gold-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  /* Wax seal pulse */
+  @keyframes seal-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(201, 169, 110, 0.4); }
+    50% { box-shadow: 0 0 0 12px rgba(201, 169, 110, 0); }
+  }
+
+  .seal-pulse {
+    animation: seal-pulse 2.5s ease-in-out infinite;
+  }
+
+  /* Envelope flap animation */
+  @keyframes flap-open {
+    0% { transform: rotateX(0deg); }
+    100% { transform: rotateX(-180deg); }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 1s ease-out forwards;
+  }
+
+  /* Staggered animation delays */
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+  .delay-500 { animation-delay: 0.5s; }
+  .delay-600 { animation-delay: 0.6s; }
+  .delay-700 { animation-delay: 0.7s; }
+  .delay-800 { animation-delay: 0.8s; }
+
+  /* Countdown number flip */
+  @keyframes number-tick {
+    0% { transform: translateY(-100%); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  /* Scroll-triggered reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

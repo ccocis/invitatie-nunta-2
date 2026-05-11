@@ -206,7 +206,7 @@ export default function Home() {
               />
 
               {/* Content */}
-              <div style={{ textAlign: "center", position: "relative", zIndex: 1, maxWidth: 680 }}>
+              <div style={{ textAlign: "center", position: "relative", zIndex: 1, maxWidth: 680, paddingTop: "clamp(2rem, 8vw, 4rem)" }}>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -408,7 +408,7 @@ export default function Home() {
                 <RevealSection>
                   <div style={{ textAlign: "center", marginBottom: "3rem" }}>
                     <p style={{ ...labelStyle, marginBottom: "0.5rem" }}>
-                      Vă rugăm să confirmați prezența până la 3 Octombrie 2026
+                      Vă rugăm să confirmați prezența până la data de 3 Octombrie 2026
                     </p>
                     <GoldDivider />
                   </div>

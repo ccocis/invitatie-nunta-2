@@ -16,6 +16,7 @@ export default function RSVPForm() {
     plusOne: "",
     children: "",
     menu: "",
+    childrenmenu: "",
     allergies: "",
     message: "",
   });
@@ -55,6 +56,7 @@ export default function RSVPForm() {
           partener: formData.plusOne || "Not specified",
           copii: formData.children || "Not specified",
           meniu: formData.menu || "Not specified",
+          meniu_copii: formData.childrenMenu || "Nespecificat",
           alergii: formData.allergies || "None",
           mesaj: formData.message || "No message",
         },
@@ -348,11 +350,57 @@ export default function RSVPForm() {
             </div>
           </div>
 
+          {/* Children menu question */}
+          {formData.children === "da" && (
+            <div className="mb-8">
+              <label style={labelStyle}>Doriti meniu pentru copii?</label>
+              <div className="flex gap-8 mt-2">
+                {["Da", "Nu"].map((opt) => (
+                  <label
+                    key={opt}
+                    className="flex items-center gap-2 cursor-pointer"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', Georgia, serif",
+                      fontSize: "1rem",
+                      color: formData.childrenMenu === opt.toLowerCase() ? "#C9A96E" : "#2C2A27",
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: 18,
+                        height: 18,
+                        borderRadius: "50%",
+                        border: `1.5px solid ${formData.childrenMenu === opt.toLowerCase() ? "#C9A96E" : "#9E7A3F"}`,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        transition: "all 0.2s",
+                      }}
+                    >
+                      {formData.childrenMenu === opt.toLowerCase() && (
+                        <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#C9A96E" }} />
+                      )}
+                    </div>
+                    <input
+                      type="radio"
+                      name="childrenMenu"
+                      value={opt.toLowerCase()}
+                      checked={formData.childrenMenu === opt.toLowerCase()}
+                      onChange={(e) => setFormData({ ...formData, childrenMenu: e.target.value })}
+                      className="sr-only"
+                    />
+                    {opt}
+                  </label>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Menu preference */}
           <div className="mb-8">
             <label style={labelStyle}>Preferințe meniu</label>
             <div className="flex gap-8 mt-2">
-              {["Standard", "Vegetarian"].map((opt) => (
+              {["Standard", "Vegetarian", "Vegan"].map((opt) => (
                 <label
                   key={opt}
                   className="flex items-center gap-2 cursor-pointer"

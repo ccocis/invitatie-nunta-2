@@ -212,7 +212,7 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                  <p style={{ ...labelStyle, marginBottom: "1rem" }}>
+                  <p style={{ ...labelStyle, marginBottom: "1rem", maxWidth: "500px", margin: "0 auto 1rem" }}>
                     Pentru că cele mai frumoase momente se petrec alături de oameni dragi,
                   </p>
                   <p style={{ ...serifStyle("1.1rem", 300), fontStyle: "italic", marginBottom: "0.5rem" }}>

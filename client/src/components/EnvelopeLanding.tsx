@@ -58,7 +58,7 @@ export default function EnvelopeLanding({ onOpen }: EnvelopeLandingProps) {
               style={{ width: "min(580px, 90vw)" }}
             >
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663640176366/jRyVch4PWwnb6ouH3Moick/envelope-be3DxPcsoMgXsYmazijeWr.webp"
+                src="/envelope-be3DxPcsoMgXsYmazijeWr.webp"
                 alt="Wedding invitation envelope"
                 className="w-full h-auto drop-shadow-2xl"
                 style={{ filter: "drop-shadow(0 20px 60px rgba(44, 42, 39, 0.18))" }}
